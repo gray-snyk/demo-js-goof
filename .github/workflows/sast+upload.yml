@@ -24,6 +24,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
+          command: code test
           args: '--severity-threshold=high --sarif-file-output=snyk.sarif --exclude-vuln-types=lic'
       
       - name: Upload Snyk SARIF file
