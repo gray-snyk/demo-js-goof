@@ -26,10 +26,9 @@ jobs:
         with:
           command: code test
           args: '--severity-threshold=high --sarif-file-output=snyk.sarif --exclude-vuln-types=lic'
-      
-      - name: Upload Snyk SARIF file
-        uses: actions/upload-artifact@v4
+          
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          name: snyk-sarif-report
-          path: snyk.sarif
+          sarif_file: snyk.sarif
 
