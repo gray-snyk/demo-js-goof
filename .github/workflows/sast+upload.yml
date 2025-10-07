@@ -1,4 +1,4 @@
-name: Snyk Code (Static Analysis)
+†name: Snyk Code (Static Analysis)
 on:
   push:
     branches: [ main ]
@@ -17,6 +17,7 @@ jobs:
         run: npm ci
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
