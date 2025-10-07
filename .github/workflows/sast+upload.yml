@@ -1,4 +1,4 @@
-†name: Snyk Code (Static Analysis)
+name: Snyk Code (Static Analysis)
 on:
   push:
     branches: [ main ]
