@@ -15,12 +15,11 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm ci
-      - name: Run Snyk Code Test
+      - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: code test
           args: '--severity-threshold=high --sarif-file-output=snyk.sarif'
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
