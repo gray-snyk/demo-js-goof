@@ -1,4 +1,4 @@
-name: Snyk Code (Static Analysis)
+name: Snyk SAST W/ GH Security
 on:
   push:
     branches: [ main ]
