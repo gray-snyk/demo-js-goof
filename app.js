@@ -98,18 +98,18 @@ app.post('/pollute', (req, res) => {
 });
 
 
-app.post('/chat', (req, res) => {
-  let url = req.body.url;
+// app.post('/chat', (req, res) => {
+//   let url = req.body.url;
 
   
-  require('http').get(url, (response) => {
-    let data = '';
-    response.on('data', (chunk) => { data += chunk; });
-    response.on('end', () => { res.send(data); });
-  }).on('error', (err) => {
-    res.status(500).send('Request failed');
-  });
-});
+//   require('http').get(url, (response) => {
+//     let data = '';
+//     response.on('data', (chunk) => { data += chunk; });
+//     response.on('end', () => { res.send(data); });
+//   }).on('error', (err) => {
+//     res.status(500).send('Request failed');
+//   });
+// });
 
 // Routes
 app.use(routes.current_user);
