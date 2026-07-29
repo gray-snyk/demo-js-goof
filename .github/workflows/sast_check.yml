@@ -1,0 +1,34 @@
+name: Snyk Code (Static Analysis Check)
+on:
+  push:
+    branches: [ main ]
+jobs:
+  code-analysis:
+    name: Snyk Code Scan & GH security upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: false
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test
+          args: '--severity-threshold=high --sarif-file-output=snyk.sarif --exclude-vuln-types=lic'
+          
+      - name: Upload Snyk SARIF file
+        uses: actions/upload-artifact@v4
+        with:
+          name: snyk-sarif-report
+          path: snyk.sarif
