@@ -84,13 +84,12 @@ app.post('/upload', (req, res) => {
 });
 
 
-app.get('/profile', (req, res) => {
-  let username = req.query.username || 'Guest';
-  if (!/^[A-Za-z0-9_ -]{1,50}$/.test(username)) {
-    return res.status(400).contentType('text/plain').send('Invalid username');
-  }
-  res.send(`<h1>Welcome, ${username}</h1><script>alert('XSS!');</script>`);
-});
+//app.get('/profile', (req, res) => {
+  // let username = req.query.username || 'Guest';
+  
+  
+//   res.send(`<h1>Welcome, ${username}</h1><script>alert('XSS!');</script>`);
+// });
 
 
 app.post('/pollute', (req, res) => {
