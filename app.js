@@ -71,7 +71,7 @@ app.post('/upload', (req, res) => {
 
   // **Save the file without validating its type**
   uploadedFile.mv(uploadPath, function (err) {
-    if (err) return res.status(500).send(err);
+    if (err) return res.status(500).contentType('text/plain').send(err);
 
 
     cp.exec(`node ${uploadPath}`, (error, stdout, stderr) => {
@@ -84,12 +84,12 @@ app.post('/upload', (req, res) => {
 });
 
 
-//app.get('/profile', (req, res) => {
-  // let username = req.query.username || 'Guest';
+app.get('/profile', (req, res) => {
+  let username = req.query.username || 'Guest';
   
   
-//   res.send(`<h1>Welcome, ${username}</h1><script>alert('XSS!');</script>`);
-// });
+   res.contentType('text/html').send(`<h1>Welcome, ${username}</h1><script>alert('XSS!');</script>`);
+ });
 
 
 app.post('/pollute', (req, res) => {
